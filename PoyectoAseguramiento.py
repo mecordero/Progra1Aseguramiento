@@ -6,6 +6,7 @@ def bisiesto(año):
     Proceso: si el año no termina en 00, si sus ultimos 2 digitos son multiplos de 4
              si termina en 00, es bisiesto si es divisible entre 400
     '''
+    
     if año%100!=0:
         if (año%100)%4==0:
             return True
@@ -18,11 +19,14 @@ def bisiesto(año):
             return False
 
 
-def fecha_es_valida(año,mes,dia):
+def fecha_es_valida(tupla):
     '''
     Entradas: dia,mes y año
     Salidas: True o False si la fecha es valida o invalida
     '''
+    año=tupla[0]
+    mes=tupla[1]
+    dia=tupla[2]
 
     if año>=0:
         if 1<=mes<=12:
