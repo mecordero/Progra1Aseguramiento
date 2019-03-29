@@ -52,40 +52,4 @@ def fecha_es_valida(año,mes,dia):
     else:
         return False
 
-#8 Fecha
-def fecha(num):
-    '''
-    Entradas: numero que corresponde a el dia, mes y el año
-    Salidas: el dia, el mes y el año
-    Proceso: determinar el mes dependiendo del digito ingresado
-    Restricciones: no hay
-    '''
 
-    if valida_fecha(num)== True:
-        if Mes==1:
-            meses="Enero"
-        if Mes==2:
-            meses="Febrero"
-        if Mes==3:
-            meses="Marzo"
-        if Mes==4:
-            meses="Abril"
-        if Mes==5:
-            meses="Mayo"
-        if Mes==6:
-            meses="Junio"
-        if Mes==7:
-            meses="Julio"
-        if Mes==8:
-            meses="Agosto"
-        if Mes==9:
-            meses="Setiembre"
-        if Mes==10:
-            meses="Octubre"
-        if Mes==11:
-            meses="Noviembre"
-        if Mes==12:
-            meses="Diciembre"
-        return (Dia, meses, Año)
-    else:
-        return False
