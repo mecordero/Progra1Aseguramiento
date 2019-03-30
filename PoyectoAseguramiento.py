@@ -37,10 +37,13 @@ def fecha_es_valida(tupla):
     Salidas: True o False si la fecha es valida o invalida
     Proceso: Verifica si la fecha existe en el calendario
     '''
+
+    if fecha_es_tupla(tupla)==False:
+        return False
+    
     año=tupla[0]
     mes=tupla[1]
     dia=tupla[2]
-
 
     if año>=0:
         if 1<=mes<=12:
