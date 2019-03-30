@@ -58,6 +58,9 @@ def fecha_es_valida(tupla):
 
 
 def dia_siguiente(fecha):
+    '''
+
+    '''
     if fecha [1] == 1 or fecha [1] == 3 or fecha [1] == 5 or fecha[1] == 7 or fecha[1] == 8 or fecha[1] == 10:
         if fecha[2] < 31:
             return (fecha[0], fecha [1], fecha[2] + 1)
