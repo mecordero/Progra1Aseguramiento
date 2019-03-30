@@ -1,4 +1,16 @@
 
+def fecha_es_tupla(fecha):
+    '''
+    Entrada: 
+    Salida:
+    Proceso: 
+    '''
+    if len (fecha) != 3:
+        return False
+    if isinstance(fecha[0], int) and isinstance (fecha[1], int) and isinstance(fecha[2], int):
+        return True
+    return False
+
 def bisiesto(año):
     '''
     Entrada: int año
@@ -23,6 +35,7 @@ def fecha_es_valida(tupla):
     '''
     Entradas: dia,mes y año
     Salidas: True o False si la fecha es valida o invalida
+    Proceso: Verifica si la fecha existe en el calendario
     '''
     año=tupla[0]
     mes=tupla[1]
@@ -59,7 +72,10 @@ def fecha_es_valida(tupla):
 
 def dia_siguiente(fecha):
     '''
-
+    Entrada: fecha en forma de tupla (int, int, int)
+    Salida: fecha en forma de tupla (int, int, int) con la fecha siguiente a
+    la ingresada
+    Proceso: Devuelve la fecha siguiente a la ingresada 
     '''
     if fecha [1] == 1 or fecha [1] == 3 or fecha [1] == 5 or fecha[1] == 7 or fecha[1] == 8 or fecha[1] == 10:
         if fecha[2] < 31:
@@ -80,6 +96,11 @@ def dia_siguiente(fecha):
         if fecha[2] < 31:
             return (fecha[0], fecha [1], fecha[2] + 1)
         return (fecha[0] + 1, 1, 1)
-            
+
+def imprimir_3x4(año):
+    if not isinstance(año, int):
+        return
+    print("Calendario del año " + str(año) + " D.C.") 
+
 
 
