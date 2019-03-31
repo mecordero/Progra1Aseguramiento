@@ -101,10 +101,50 @@ def dia_siguiente(fecha):
             return (fecha[0], fecha [1], fecha[2] + 1)
         return (fecha[0] + 1, 1, 1)
 
+
+def dias_desde_primero_enero(fecha):
+    '''
+    Entrada: fecha en forma de tupla (int, int, int)
+    Salida: número de días en forma de int
+    Proceso: Devuelve el número de días entre el primero de enero y la fecha dada
+    '''
+    if fecha_es_valida(fecha):
+        
+        if fecha[1]==1:
+            return fecha[2]-1
+        else:
+            diferencia_de_días = -1
+            for i in range(1, fecha[1]):
+                diferencia_de_días += dias_de_mes((fecha[0],i,fecha[2]))
+            return diferencia_de_días + fecha[2]
+            
+            
+    else:
+        print("Digite una fecha válida")
+
 def imprimir_3x4(año):
     if not isinstance(año, int):
         return
-    print("Calendario del año " + str(año) + " D.C.") 
+    print("Calendario del año " + str(año) + " D.C.")
+
+
+##Funciones extra
+
+def dias_de_mes(fecha):
+    if bisiesto(fecha[0]):
+            if fecha[1] == 2:
+                return 29
+            elif fecha[1] == 4 or fecha[1] == 6 or fecha[1] == 9 or fecha[1] == 11:
+                return 30
+            else:
+                return 31
+    else:
+            if fecha[1] == 2:
+                return 28
+            elif fecha[1] == 4 or fecha[1] == 6 or fecha[1] == 9 or fecha[1] == 11:
+                return 30
+            else:
+                return 31
 
 
 
