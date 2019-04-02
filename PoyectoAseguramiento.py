@@ -116,11 +116,18 @@ def dias_desde_primero_enero(fecha):
             diferencia_de_días = -1
             for i in range(1, fecha[1]):
                 diferencia_de_días += dias_de_mes((fecha[0],i,fecha[2]))
-            return diferencia_de_días + fecha[2]
-            
+            return diferencia_de_días + fecha[2]            
             
     else:
         print("Digite una fecha válida")
+
+def dia_primero_enero(año):
+    '''
+    Entrada: fecha en forma de tupla (int, int, int)
+    Salida: número de días en forma de int
+    Proceso: Devuelve el número de días de un mes
+    '''
+
 
 def imprimir_3x4(año):
     if not isinstance(año, int):
@@ -131,6 +138,12 @@ def imprimir_3x4(año):
 ##Funciones extra
 
 def dias_de_mes(fecha):
+    '''
+    Entrada: fecha en forma de tupla (int, int, int)
+    Salida: número de días en forma de int
+    Proceso: Devuelve el número de días de un mes
+    '''
+    
     if bisiesto(fecha[0]):
             if fecha[1] == 2:
                 return 29
