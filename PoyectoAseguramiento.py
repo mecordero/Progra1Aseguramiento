@@ -125,8 +125,20 @@ def dia_primero_enero(año):
     '''
     Entrada: fecha en forma de tupla (int, int, int)
     Salida: número de días en forma de int
-    Proceso: Devuelve el número de días de un mes
+    Proceso: Devuelve el primer día del mes (0=Domingo, 1=Lunes, 2=Martes, 3=Miércoles, 4=Jueves, 5=Viernes, 6=Sábado)
     '''
+
+    mes = 1
+    dia = 1
+    año -= 1
+    cent = año // 100
+    year = año % 100
+
+    dia_de_semana = int(1 + (2.6*11 - 0.2) - 2*cent + year + year//4 + cent//4)%7
+    print(dia_de_semana)
+    
+
+    
 
 
 def imprimir_3x4(año):
