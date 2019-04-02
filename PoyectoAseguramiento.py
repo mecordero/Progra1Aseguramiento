@@ -119,7 +119,7 @@ def dias_desde_primero_enero(fecha):
             return diferencia_de_días + fecha[2]            
             
     else:
-        print("Digite una fecha válida")
+        print("Digite una fecha válida" + str(fecha))
 
 def dia_primero_enero(año):
     '''
@@ -135,7 +135,7 @@ def dia_primero_enero(año):
     year = año % 100
 
     dia_de_semana = int(1 + (2.6*11 - 0.2) - 2*cent + year + year//4 + cent//4)%7
-    print(dia_de_semana)
+    return dia_de_semana
     
 
     
@@ -146,6 +146,53 @@ def imprimir_3x4(año):
         return
     print("Calendario del año " + str(año) + " D.C.")
 
+    encabezados =  ["         Enero        |        Febrero       |         Marzo        |         Abril      "]
+    encabezados += ["         Mayo         |         Junio        |         Julio        |        Agosto      "]    
+    encabezados += ["       Setiembre      |        Octubre       |       Noviembre      |       Diciembre    "]  
+    
+
+    extra_meses = -4
+
+    dia_primero_e = dia_primero_enero(año)
+
+    #FOR de enero, febrero, marzo y abril
+    for encabezado in encabezados:
+        print(encabezado)
+        print(" D  L  K  M  J  V  S  | D  L  K  M  J  V  S  | D  L  K  M  J  V  S  | D  L  K  M  J  V  S")  
+        dias_meses = [1, 1, 1, 1]
+        extra_meses += 4
+        while dias_meses != [0,0,0,0]:
+            for i in range(0, 4):
+                
+                if dias_meses[i] == 0:
+                    dia_primero = 0
+                else:
+                    dia_primero = dias_desde_primero_enero((año, extra_meses + i + 1, dias_meses[i])) #31
+                    dia_primero = (dia_primero + dia_primero_e) % 7 #3
+
+                for j in range(0, dia_primero):
+                    print("   ", end = "")
+                    continue
+            
+                for k in range(dia_primero, 7):
+                    if dias_meses[i] == 0:
+                        print ("   ", end = "")
+                        continue
+                    elif dias_meses[i] < 10:
+                        print (" ", end = "")
+                    print(str(dias_meses[i]) + " ", end = "")                
+
+                    #verifica si llegó al máximo
+
+                    if dias_de_mes((año, extra_meses + i + 1, 1)) == dias_meses[i]:
+                        dias_meses[i] = 0
+                    else:
+                        dias_meses[i] += 1
+
+                if i != 3:
+                    print (" |", end = "")
+                else:
+                    print()
 
 ##Funciones extra
 
