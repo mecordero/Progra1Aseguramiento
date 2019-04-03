@@ -3,7 +3,7 @@ def fecha_es_tupla(fecha):
     '''
     Entrada: fecha en forma de tupla (int, int, int)
     Salida: true o false dependiendo si el formato de la fecha es valida
-    Proceso: 
+    Proceso: valida que el tipo de los datos ingresados sea correcta
     '''
     if len (fecha) != 3:
         return False
@@ -133,15 +133,14 @@ def dia_primero_enero(año):
     year = año % 100
 
     dia_de_semana = int(1 + (2.6*11 - 0.2) - 2*cent + year + year//4 + cent//4)%7
-    return dia_de_semana
-    
-
-    
+    return dia_de_semana   
 
 
 def imprimir_3x4(año):
     '''
-
+    Entrada: int año
+    Salida: calendario gregoriano del año ingresado
+    Proceso: devuelve el calendario del año ingresado con los meses y si el nombre del dia por fecha
     '''
     if not isinstance(año, int):
         return
