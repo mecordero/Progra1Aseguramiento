@@ -1,3 +1,7 @@
+#Elaborado por Aaron Carballo, Melisa Cordero y Leonardo Román
+#Fecha de creacion 29/03/2019 a la 1:05 p.m
+#Ultima fecha de modificacion 11:24 p.m del 3/04/2019
+#Version 1.0
 
 def fecha_es_tupla(fecha):
     '''
