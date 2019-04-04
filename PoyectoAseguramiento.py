@@ -106,8 +106,10 @@ def dias_desde_primero_enero(fecha):
     Salida: número de días en forma de int
     Proceso: Devuelve el número de días entre el primero de enero y la fecha dada
     '''
+    #Verifia si la fecha es válida
     if fecha_es_valida(fecha):
-        
+
+        #Ciclo en el cual suma los días entre el primero de enero y la fecha dada
         if fecha[1]==1:
             return fecha[2]-1
         else:
@@ -126,12 +128,13 @@ def dia_primero_enero(año):
     Proceso: Devuelve el primer día del mes (0=Domingo, 1=Lunes, 2=Martes, 3=Miércoles, 4=Jueves, 5=Viernes, 6=Sábado)
     '''
 
-    mes = 1
-    dia = 1
-    año -= 1
-    cent = año // 100
-    year = año % 100
+    mes = 1 #Mes de enero
+    dia = 1 #Número de día
+    año -= 1 #Se debe decrementar en 1 el año al utilizar el mes de enero
+    cent = año // 100 #Calculo del siglo
+    year = año % 100  #Año de ese siglo
 
+    #Fórmula para el cálculo del dia
     dia_de_semana = int(1 + (2.6*11 - 0.2) - 2*cent + year + year//4 + cent//4)%7
     return dia_de_semana   
 
@@ -202,7 +205,7 @@ def dias_de_mes(fecha):
     Salida: número de días en forma de int
     Proceso: Devuelve el número de días de un mes
     '''
-    
+    #Devuelve la cantidad de días de un mes en un año bisiesto
     if bisiesto(fecha[0]):
             if fecha[1] == 2:
                 return 29
@@ -210,6 +213,7 @@ def dias_de_mes(fecha):
                 return 30
             else:
                 return 31
+    #Devuelve la cantidad de días de un mes en un año
     else:
             if fecha[1] == 2:
                 return 28
