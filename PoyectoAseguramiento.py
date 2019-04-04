@@ -5,7 +5,7 @@ def fecha_es_tupla(fecha):
     Salida: true o false dependiendo si el formato de la fecha es valida
     Proceso: valida que el tipo de los datos ingresados sea correcta
     '''
-    if len (fecha) != 3:
+    if len(fecha) != 3 and isinstance(fecha,tuple):
         return False
     if isinstance(fecha[0], int) and isinstance (fecha[1], int) and isinstance(fecha[2], int):
         return True
@@ -17,6 +17,8 @@ def bisiesto(año):
     Salida: True si el año es bisisesto, False si no lo es.
     Proceso: si el año no termina en 00, si sus ultimos 2 digitos son multiplos de 4 si termina en 00, es bisiesto si es divisible entre 400
     '''
+    if not isinstance(año, int):
+        return False
     
     if año%100!=0:
         if (año%100)%4==0:
@@ -88,7 +90,7 @@ def dia_siguiente(fecha):
             return (fecha[0], 2, fecha [2] + 1)
         else:
             if fecha[2] == 28 and bisiesto(fecha[0]):
-                return (29, 2, fecha[2])
+                return (fecha[0], 2, 29)
             return (fecha[0], 3, 1)
     if fecha[1] == 4 or fecha[1] == 6 or fecha [1] == 9 or fecha[1] ==11:
         if fecha[2] < 30:
