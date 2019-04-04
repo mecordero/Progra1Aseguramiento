@@ -9,8 +9,10 @@ def fecha_es_tupla(fecha):
     Salida: true o false dependiendo si el formato de la fecha es valida
     Proceso: valida que el tipo de los datos ingresados sea correcta
     '''
+    #Valida que el parametro sea una tupla
     if len(fecha) != 3 and isinstance(fecha,tuple):
         return False
+    #Valida que los parametros sean enteros
     if isinstance(fecha[0], int) and isinstance (fecha[1], int) and isinstance(fecha[2], int):
         return True
     return False
@@ -21,14 +23,16 @@ def bisiesto(año):
     Salida: True si el año es bisisesto, False si no lo es.
     Proceso: si el año no termina en 00, si sus ultimos 2 digitos son multiplos de 4 si termina en 00, es bisiesto si es divisible entre 400
     '''
+    #Valida que el parametro sea un entero
     if not isinstance(año, int):
         return False
-    
+    #Revisa los casos donde el año termina en 00
     if año%100!=0:
         if (año%100)%4==0:
             return True
         else:
             return False
+    #Revisa los casos donde el año no termina en 00
     elif año%100==0:
         if año%400==0:
             return True
@@ -46,13 +50,13 @@ def fecha_es_valida(tupla):
     if fecha_es_tupla(tupla)==False:
         return False
     
-    año=tupla[0]
-    mes=tupla[1]
-    dia=tupla[2]
+    año=tupla[0] #Año de la fecha
+    mes=tupla[1] #Mes de la fecha
+    dia=tupla[2] #Dia de la fecha
 
-    if año>=0:
-        if 1<=mes<=12:
-            if mes==2:
+    if año>=0: #Valida que el año ingresado sea un numero positivo
+        if 1<=mes<=12: #Valida que el mes este entre 1 y 12
+            if mes==2: #Caso especial para validar febrero por si es bisiesto
                 if bisiesto(año)==True:
                     if dia<=29:
                         return True
@@ -63,13 +67,13 @@ def fecha_es_valida(tupla):
                         return True
                     else:
                         return False
-            if mes==1 or mes==3 or mes==5 or mes==7 or mes==8 or mes==10 or mes==12:
-                if dia<=31 and dia>=1:
+            if mes==1 or mes==3 or mes==5 or mes==7 or mes==8 or mes==10 or mes==12: #Para los meses de 31 dias
+                if dia<=31 and dia>=1: #Si no se sale del rango entre 1 y 31
                     return True
                 else:
                     return False
-            if mes==4 or mes==6 or mes==9 or mes==11:
-                if dia<=30 and dia>=1:
+            if mes==4 or mes==6 or mes==9 or mes==11: #Para los meses de 30 dias
+                if dia<=30 and dia>=1: #Si no se sale del rango entre 1 y 30
                     return True
                 else:
                     return False
@@ -85,10 +89,12 @@ def dia_siguiente(fecha):
     Salida: fecha en forma de tupla (int, int, int) con la fecha siguiente a la ingresada
     Proceso: Devuelve la fecha siguiente a la ingresada 
     '''
+    #Para los meses de 31 dias
     if fecha [1] == 1 or fecha [1] == 3 or fecha [1] == 5 or fecha[1] == 7 or fecha[1] == 8 or fecha[1] == 10:
         if fecha[2] < 31:
             return (fecha[0], fecha [1], fecha[2] + 1)
         return (fecha[0], fecha[1] + 1, 1)
+    #Para febrero
     if fecha [1] == 2:
         if fecha[2] < 28:
             return (fecha[0], 2, fecha [2] + 1)
@@ -96,10 +102,12 @@ def dia_siguiente(fecha):
             if fecha[2] == 28 and bisiesto(fecha[0]):
                 return (fecha[0], 2, 29)
             return (fecha[0], 3, 1)
+    #Para los meses con 30 dias
     if fecha[1] == 4 or fecha[1] == 6 or fecha [1] == 9 or fecha[1] ==11:
         if fecha[2] < 30:
             return (fecha[0], fecha [1], fecha[2] + 1)
         return (1, fecha[1] + 1, fecha[2])
+    #Para diciembre por el caso del 31 de diciembre
     if fecha[1] == 12:
         if fecha[2] < 31:
             return (fecha[0], fecha [1], fecha[2] + 1)
