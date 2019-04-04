@@ -122,7 +122,6 @@ def dias_desde_primero_enero(fecha):
     '''
     #Verifia si la fecha es válida
     if fecha_es_valida(fecha):
-
         #Ciclo en el cual suma los días entre el primero de enero y la fecha dada
         if fecha[1]==1:
             return fecha[2]-1
@@ -130,8 +129,7 @@ def dias_desde_primero_enero(fecha):
             diferencia_de_días = -1
             for i in range(1, fecha[1]):
                 diferencia_de_días += dias_de_mes((fecha[0],i,fecha[2]))
-            return diferencia_de_días + fecha[2]            
-            
+            return diferencia_de_días + fecha[2]                     
     else:
         print("Digite una fecha válida" + str(fecha))
 
@@ -167,7 +165,6 @@ def imprimir_3x4(año):
     encabezados += ["         Mayo         |         Junio        |         Julio        |        Agosto      "]    
     encabezados += ["       Setiembre      |        Octubre       |       Noviembre      |       Diciembre    "]  
     
-
     extra_meses = -4
 
     dia_primero_e = dia_primero_enero(año)
