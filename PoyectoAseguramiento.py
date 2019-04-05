@@ -154,7 +154,7 @@ def dia_primero_enero(año):
 def imprimir_3x4(año):
     '''
     Entrada: int año
-    Salida: calendario gregoriano del año ingresado
+    Salida: None
     Proceso: devuelve el calendario del año ingresado con los meses y si el nombre del dia por fecha
     '''
     if not isinstance(año, int):
