@@ -155,12 +155,13 @@ def dia_primero_enero(año):
 def imprimir_3x4(año):
     '''
     Entrada: int año
-    Salida: calendario gregoriano del año ingresado
+    Salida: None
     Proceso: devuelve el calendario del año ingresado con los meses y si el nombre del dia por fecha
     '''
     if not isinstance(año, int) or año<1582:
         print("Fecha invalida")
         return
+<<<<<<< HEAD
     else:
         print("Calendario del año " + str(año) + " D.C.")
 
@@ -183,6 +184,53 @@ def imprimir_3x4(año):
                     
                     if dias_meses[i] == 0:
                         dia_primero = 0
+=======
+    print("Calendario del año " + str(año) + " D.C.")
+
+    #Encabezados que imprimir de los grupos de meses
+    encabezados =  ["         Enero        |        Febrero       |         Marzo        |         Abril      "]
+    encabezados += ["         Mayo         |         Junio        |         Julio        |        Agosto      "]    
+    encabezados += ["       Setiembre      |        Octubre       |       Noviembre      |       Diciembre    "]  
+    
+    extra_meses = -4 #variable para saber por cual mes va
+
+    dia_primero_e = dia_primero_enero(año) #día de la semana del primero de enero del año ingresado
+
+    #FOR de todos los meses
+    for encabezado in encabezados: 
+        print(encabezado)
+        print(" D  L  K  M  J  V  S  | D  L  K  M  J  V  S  | D  L  K  M  J  V  S  | D  L  K  M  J  V  S")  
+        dias_meses = [1, 1, 1, 1] #variable que lleva el contador del día de cada mes
+        extra_meses += 4 
+        #While no han terminado los 4 meses de imprimirse
+        while dias_meses != [0,0,0,0]:
+            for i in range(0, 4): #Para cada mes
+                
+                if dias_meses[i] == 0:
+                    dia_primero = 0
+                else:
+                    dia_primero = dias_desde_primero_enero((año, extra_meses + i + 1, dias_meses[i])) #31
+                    dia_primero = (dia_primero + dia_primero_e) % 7 #3
+
+                #imprime espacios sin numero
+                for j in range(0, dia_primero):
+                    print("   ", end = "")
+                    continue
+                
+                #imprime los numeros de los días
+                for k in range(dia_primero, 7):
+                    if dias_meses[i] == 0:
+                        print ("   ", end = "")
+                        continue
+                    elif dias_meses[i] < 10:
+                        print (" ", end = "")
+                    print(str(dias_meses[i]) + " ", end = "")                
+
+                    #verifica si llegó al máximo
+
+                    if dias_de_mes((año, extra_meses + i + 1, 1)) == dias_meses[i]:
+                        dias_meses[i] = 0 #terminó el mes
+>>>>>>> 5241643c157c34749ff550222a01773ac6830253
                     else:
                         dia_primero = dias_desde_primero_enero((año, extra_meses + i + 1, dias_meses[i])) #31
                         dia_primero = (dia_primero + dia_primero_e) % 7 #3
