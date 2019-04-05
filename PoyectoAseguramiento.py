@@ -1,6 +1,6 @@
 #Elaborado por Aaron Carballo, Melisa Cordero y Leonardo Román
 #Fecha de creación 29/03/2019 a la 1:05 p.m
-#Última fecha de modificación 11:24 p.m del 3/04/2019
+#Última fecha de modificación 2:44 p.m del 4/04/2019
 #Versión 1.0
 
 def fecha_es_tupla(fecha):
@@ -54,7 +54,7 @@ def fecha_es_valida(tupla):
     mes=tupla[1] #Mes de la fecha
     dia=tupla[2] #Dia de la fecha
 
-    if año>=0: #Valida que el año ingresado sea un número positivo
+    if año>=1582: #Valida que el año ingresado sea un número positivo
         if 1<=mes<=12: #Valida que el mes este entre 1 y 12
             if mes==2: #Caso especial para validar febrero por si es bisiesto
                 if bisiesto(año)==True:
@@ -80,6 +80,7 @@ def fecha_es_valida(tupla):
         else:
             return False
     else:
+        print("Ingresar año mayor o igual al 1582")
         return False
 
 
@@ -136,7 +137,7 @@ def dias_desde_primero_enero(fecha):
 def dia_primero_enero(año):
     '''
     Entrada: fecha en forma de tupla (int, int, int)
-    Salida: número de días en forma de int
+    Salida: Devuelve el número que representa el dia de la semana.
     Proceso: Devuelve el primer día del mes (0=Domingo, 1=Lunes, 2=Martes, 3=Miércoles, 4=Jueves, 5=Viernes, 6=Sábado)
     '''
 
@@ -157,56 +158,58 @@ def imprimir_3x4(año):
     Salida: calendario gregoriano del año ingresado
     Proceso: devuelve el calendario del año ingresado con los meses y si el nombre del dia por fecha
     '''
-    if not isinstance(año, int):
+    if not isinstance(año, int) or año<1582:
+        print("Fecha invalida")
         return
-    print("Calendario del año " + str(año) + " D.C.")
+    else:
+        print("Calendario del año " + str(año) + " D.C.")
 
-    encabezados =  ["         Enero        |        Febrero       |         Marzo        |         Abril      "]
-    encabezados += ["         Mayo         |         Junio        |         Julio        |        Agosto      "]    
-    encabezados += ["       Setiembre      |        Octubre       |       Noviembre      |       Diciembre    "]  
-    
-    extra_meses = -4
+        encabezados =  ["         Enero        |        Febrero       |         Marzo        |         Abril      "]
+        encabezados += ["         Mayo         |         Junio        |         Julio        |        Agosto      "]    
+        encabezados += ["       Setiembre      |        Octubre       |       Noviembre      |       Diciembre    "]  
+        
+        extra_meses = -4
 
-    dia_primero_e = dia_primero_enero(año)
+        dia_primero_e = dia_primero_enero(año)
 
-    #FOR de enero, febrero, marzo y abril
-    for encabezado in encabezados:
-        print(encabezado)
-        print(" D  L  K  M  J  V  S  | D  L  K  M  J  V  S  | D  L  K  M  J  V  S  | D  L  K  M  J  V  S")  
-        dias_meses = [1, 1, 1, 1]
-        extra_meses += 4
-        while dias_meses != [0,0,0,0]:
-            for i in range(0, 4):
-                
-                if dias_meses[i] == 0:
-                    dia_primero = 0
-                else:
-                    dia_primero = dias_desde_primero_enero((año, extra_meses + i + 1, dias_meses[i])) #31
-                    dia_primero = (dia_primero + dia_primero_e) % 7 #3
-
-                for j in range(0, dia_primero):
-                    print("   ", end = "")
-                    continue
-            
-                for k in range(dia_primero, 7):
+        #FOR de enero, febrero, marzo y abril
+        for encabezado in encabezados:
+            print(encabezado)
+            print(" D  L  K  M  J  V  S  | D  L  K  M  J  V  S  | D  L  K  M  J  V  S  | D  L  K  M  J  V  S")  
+            dias_meses = [1, 1, 1, 1]
+            extra_meses += 4
+            while dias_meses != [0,0,0,0]:
+                for i in range(0, 4):
+                    
                     if dias_meses[i] == 0:
-                        print ("   ", end = "")
-                        continue
-                    elif dias_meses[i] < 10:
-                        print (" ", end = "")
-                    print(str(dias_meses[i]) + " ", end = "")                
-
-                    #verifica si llegó al máximo
-
-                    if dias_de_mes((año, extra_meses + i + 1, 1)) == dias_meses[i]:
-                        dias_meses[i] = 0
+                        dia_primero = 0
                     else:
-                        dias_meses[i] += 1
+                        dia_primero = dias_desde_primero_enero((año, extra_meses + i + 1, dias_meses[i])) #31
+                        dia_primero = (dia_primero + dia_primero_e) % 7 #3
 
-                if i != 3:
-                    print (" |", end = "")
-                else:
-                    print()
+                    for j in range(0, dia_primero):
+                        print("   ", end = "")
+                        continue
+                
+                    for k in range(dia_primero, 7):
+                        if dias_meses[i] == 0:
+                            print ("   ", end = "")
+                            continue
+                        elif dias_meses[i] < 10:
+                            print (" ", end = "")
+                        print(str(dias_meses[i]) + " ", end = "")                
+
+                        #verifica si llegó al máximo
+
+                        if dias_de_mes((año, extra_meses + i + 1, 1)) == dias_meses[i]:
+                            dias_meses[i] = 0
+                        else:
+                            dias_meses[i] += 1
+
+                    if i != 3:
+                        print (" |", end = "")
+                    else:
+                        print()
 
 ##Funciones extra
 
