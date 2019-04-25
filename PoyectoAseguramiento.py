@@ -212,6 +212,35 @@ def imprimir_3x4(año):
                     else:
                         print()
 
+def fecha_futura(fecha, numDias):
+    '''
+    Entrada: fecha en formato de tupla, numero de días como entero positivo
+    Salida: fecha en formato de tupla
+    Proceso: Calcula la fecha resultante al sumarle una cantidad de días a otra fecha
+    '''
+    if not fecha_es_valida(fecha):
+        return
+
+    #El parametro es una fecha válida
+    while numDias > 0:
+        diaMax = dias_de_mes(fecha)
+        if fecha[2] + numDias > diaMax:
+        #Si al sumarle los días es una fecha inválida
+            #Se cuentan los días que pasan hasta inicio del mes siguiente           
+            numDias -= diaMax - fecha[2]
+            #Cambia la fecha al ultimo día del mes
+            fecha = (fecha[0], fecha[1], diaMax)
+            #Calcula la fecha del día siguiente
+            fecha = dia_siguiente(fecha)
+            numDias -= 1
+        else:
+        #Si se puede sumar los días
+            fecha = (fecha[0], fecha[1], fecha[2] + numDias)
+            numDias = 0
+
+    return fecha
+
+
 ##Funciones extra
 
 def dias_de_mes(fecha):
