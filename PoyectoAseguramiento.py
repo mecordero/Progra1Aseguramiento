@@ -148,7 +148,7 @@ def dia_primero_enero(año):
     year = año % 100  #Año de ese siglo
 
     #Fórmula para el cálculo del dia
-    dia_de_semana = int(1 + (2.6*11 - 0.2) - 2*cent + year + year//4 + cent//4)%7
+    dia_de_semana = (1 + int(2.6*11 - 0.2) - 2*cent + year + year//4 + cent//4)%7
     return dia_de_semana   
 
 def imprimir_3x4(año):
@@ -295,6 +295,43 @@ def dias_entre(fecha1, fecha2):
         mesActual +=1
     #suma los días que faltan
     return resultado + posterior[2]
+
+def dia_semana(fecha):
+    '''
+    Entrada: fecha en forma de tupla (int, int, int)
+    Salida: Devuelve el número que representa el dia de la semana.
+    Proceso: Devuelve el día de la semana de la fecha (0=Domingo, 1=Lunes, 2=Martes, 3=Miércoles, 4=Jueves, 5=Viernes, 6=Sábado)
+    '''
+    if not fecha_es_valida(fecha):
+        return("Fecha no valida")
+
+    mes = fecha[1] #Mes en la tupla
+    año = fecha[0] #Año en la tupla
+    if fecha[1]<3:
+        año -= 1 #Se debe decrementar en 1 el año al utilizar el mes de enero o febrero
+    if mes==1:
+        mes = 11
+    elif mes == 2:
+        mes = 12
+    else:
+        mes -= 2
+    dia = fecha[2] #Dia en la tupla
+    cent = año // 100 #Calculo del siglo
+    year = año % 100  #Año de ese siglo
+
+    #Fórmula para el cálculo del dia
+    dia_de_semana = (dia + int(2.6*mes - 0.2) - 2*cent + year + year//4 + cent//4)%7
+    return dia_de_semana   
+
+def dia_inicio_mes(año,mes):
+    '''
+    Entrada: fecha en forma de tupla (int, int, int)
+    Salida: Devuelve el número que representa el dia de la semana.
+    Proceso: Devuelve el día de la semana de la fecha (0=Domingo, 1=Lunes, 2=Martes, 3=Miércoles, 4=Jueves, 5=Viernes, 6=Sábado)
+    '''
+    return dia_semana((año,mes,1)) #Llama a la funcion dia de la semana con dia 1 para encontrar el dia de inicio del mes
+
+    
 
 
 ##Funciones extra
