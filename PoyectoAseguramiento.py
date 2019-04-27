@@ -240,6 +240,62 @@ def fecha_futura(fecha, numDias):
 
     return fecha
 
+def dias_entre(fecha1, fecha2):
+    '''
+    Entrada: 2 fechas en forma de tupla
+    Salida: entero de cantidad de días entre las dos fechas
+    Proceso: Calcula la cantidad de días que separa las dos fechas
+    '''
+
+    if not fecha_es_valida(fecha1) or not fecha_es_valida(fecha2):
+        return
+
+    #Ambas fechas son válidas
+    if fecha1 == fecha2:
+        return 0
+
+    #No son la misma fecha  
+    
+    if esAnterior(fecha1, fecha2):
+        anterior = fecha1
+        posterior = fecha2
+    else:
+        anterior = fecha2
+        posterior = fecha1
+
+    if anterior[0] == posterior[0]:
+        #son del mismo año
+        if anterior[1] == posterior[1]:
+            #son del mismo mes
+            return posterior[2] - anterior[2]
+        #no son del mismo mes
+        resultado = dias_de_mes(anterior) - anterior[2]
+        mesActual = anterior[1] + 1
+        #loop hasta que sean el mismo mes
+        while mesActual != posterior[1]:
+            resultado += dias_de_mes((anterior[0], mesActual,1))
+            mesActual +=1
+        #suma los días que faltan
+        return resultado + posterior[2]
+    #no son del mismo año
+    resultado = dias_de_mes(anterior) - anterior[2]    
+    añoActual = anterior[0]
+    mesActual = anterior[1] + 1
+    #loop hasta que sean el mismo año
+    while añoActual != posterior[0]:
+        #suma todos los dias del año mes a mes
+        while mesActual <=12:
+            resultado += dias_de_mes((añoActual, mesActual,1))
+            mesActual +=1
+        mesActual = 1
+        añoActual +=1
+    #loop hasta que sean el mismo mes
+    while mesActual != posterior[1]:
+        resultado += dias_de_mes((anterior[0], mesActual,1))
+        mesActual +=1
+    #suma los días que faltan
+    return resultado + posterior[2]
+
 
 ##Funciones extra
 
@@ -267,4 +323,23 @@ def dias_de_mes(fecha):
                 return 31
 
 
+def esAnterior(fechaAnterior, fechaPosterior):
+    if fechaAnterior[0] > fechaPosterior[0]:
+        return False
+    if fechaAnterior[0] < fechaPosterior[0]:
+        return True
 
+    #son del mismo año
+    if fechaAnterior[1] > fechaPosterior[1]:
+        return False
+    if fechaAnterior[1] < fechaPosterior[1]:
+        return True
+
+    #son del mismo mes
+    if fechaAnterior[2] > fechaPosterior[2]:
+        return False
+    if fechaAnterior[2] < fechaPosterior[2]:
+        return True
+
+    #son del mismo día
+    return False
