@@ -1,7 +1,7 @@
 #Elaborado por Aaron Carballo, Melisa Cordero y Leonardo Román
 #Fecha de creación 29/03/2019 a la 1:05 p.m
-#Última fecha de modificación 2:44 p.m del 4/04/2019
-#Versión 1.0
+#Última fecha de modificación 8:27 p.m del 29/04/2019
+#Versión 2
 
 def fecha_es_tupla(fecha):
     '''
@@ -94,7 +94,8 @@ def dia_siguiente(fecha):
     if fecha [1] == 1 or fecha [1] == 3 or fecha [1] == 5 or fecha[1] == 7 or fecha[1] == 8 or fecha[1] == 10:
         if fecha[2] < 31:
             return (fecha[0], fecha [1], fecha[2] + 1)
-        return (fecha[0], fecha[1] + 1, 1)
+        else:
+            return (fecha[0], fecha[1] + 1, 1)
     #Para febrero
     if fecha [1] == 2:
         if fecha[2] < 28:
@@ -107,12 +108,13 @@ def dia_siguiente(fecha):
     if fecha[1] == 4 or fecha[1] == 6 or fecha [1] == 9 or fecha[1] ==11:
         if fecha[2] < 30:
             return (fecha[0], fecha [1], fecha[2] + 1)
-        return (1, fecha[1] + 1, fecha[2])
+        return (fecha[0], fecha[1] + 1, 1)
     #Para diciembre por el caso del 31 de diciembre
     if fecha[1] == 12:
         if fecha[2] < 31:
             return (fecha[0], fecha [1], fecha[2] + 1)
-        return (fecha[0] + 1, 1, 1)
+        else:
+            return (fecha[0] + 1, 1, 1)
 
 
 def dias_desde_primero_enero(fecha):
@@ -332,8 +334,6 @@ def dia_inicio_mes(año,mes):
     return dia_semana((año,mes,1)) #Llama a la funcion dia de la semana con dia 1 para encontrar el dia de inicio del mes
 
     
-
-
 ##Funciones extra
 
 def dias_de_mes(fecha):
