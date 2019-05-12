@@ -9,7 +9,7 @@ def fecha_es_tupla(fecha):
     Salida: true o false dependiendo si el formato de la fecha es valida
     Proceso: valida que el tipo de los datos ingresados sea correcta
     '''
-    #Valida que el parametro sea una tupla
+    #Valida que el parametro sea una tupla de 3 digitos
     if len(fecha) != 3 and isinstance(fecha,tuple):
         return False
     #Valida que los parametros sean enteros
@@ -80,7 +80,7 @@ def fecha_es_valida(tupla):
         else:
             return False
     else:
-        print("Ingresar año mayor o igual al 1582")
+        print("Ingresar año mayor o igual al 1582") 
         return False
 
 
@@ -380,3 +380,91 @@ def esAnterior(fechaAnterior, fechaPosterior):
 
     #son del mismo día
     return False
+
+def pruebasR2():
+    print("Casos de prueba")
+    print("Resultados:")
+    print(" ")
+    print("Partición 1")
+    print("Fecha válida: fecha_es_valida((2018,6,24))")
+    print("Resultado = " , fecha_es_valida((2018,6,24)))
+    print("Fecha inválida: fecha_es_valida((2018,6))")
+    print("Resultado = " , fecha_es_valida((2018,6)))
+    print(" ")
+    print("Partición 2")
+    print("Fecha válida: fecha_es_valida((2019,5,11))")
+    print("Resultado = " , fecha_es_valida((2019,5,11)))
+    print("Fecha inválida: fecha_es_valida((1581,6,24))")
+    print("Resultado = " , fecha_es_valida((1581,6,24)))
+    print(" ")
+    print("Partición 3")
+    print("Fecha válida: fecha_es_valida((2014,8,17))")
+    print("Resultado = " , fecha_es_valida((2014,8,17)))
+    print("Fecha inválida 1: fecha_es_valida((2020,15,24))")
+    print("Resultado = " , fecha_es_valida((2020,15,24)))
+    print("Fecha inválida 2: fecha_es_valida((2020,0,24))")
+    print("Resultado = " , fecha_es_valida((2020,0,24)))
+    print(" ")
+    print("Partición 4")
+    print("Fecha válida: fecha_es_valida((2020,2,29))")
+    print("Resultado = " , fecha_es_valida((2020,2,29)))
+    print("Fecha inválida")
+    print("Resultado = " , fecha_es_valida((2019,2,29)))
+
+def pruebasR3():
+    print("Casos de prueba")
+    print("Resultados:")
+    print(" ")
+    print("1: Fecha1 < Fecha2")
+    print("Prueba: dias_entre((2019,5,11),(2019,5,17))")
+    print("Resultado = " , dias_entre((2019,5,11),(2019,5,17)))
+    print(" ")
+    print("2: Fecha1 > Fecha2")
+    print("Fecha válida: dias_entre((2019,5,17),(2019,5,11))")
+    print("Resultado = " , dias_entre((2019,5,17),(2019,5,11)))
+    print(" ")
+    print("3: Fecha1 = Fecha2")
+    print("Fecha inválida: dias_entre((2019,5,11),(2019,5,17))")
+    print("Resultado = " , dias_entre((2019,5,11),(2019,5,17)))
+
+def pruebasR9():
+    print("Casos de prueba")
+    print("Resultados:")
+    print(" ")
+    print("Prueba: dia_semana((2019,5,12))")
+    print("Resultado = " , dia_semana((2019,5,12)))
+    print(" ")
+    print("Prueba: dia_semana((2020,8,17))")
+    print("Resultado = " , dia_semana((2020,8,17)))
+    print(" ")
+    print("Prueba: dia_semana((1998,6,24))")
+    print("Resultado = " , dia_semana((1998,6,24)))
+    print(" ")
+    print("Prueba: dia_semana((1970,1,1))")
+    print("Resultado = " , dia_semana((1970,1,1)))
+    print(" ")
+    print("Prueba: dia_semana((2040,12,31))")
+    print("Resultado = " , dia_semana((2040,12,31)))
+    print(" ")
+    print("Prueba: dia_semana((2019,12,31))")
+    print("Resultado = " , dia_semana((2020,2,29)))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
