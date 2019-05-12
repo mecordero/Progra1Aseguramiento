@@ -411,22 +411,6 @@ def pruebasR2():
     print("Fecha inválida: fecha_es_valida((2019,2,29))")
     print("Resultado = " , fecha_es_valida((2019,2,29)))
 
-def pruebasR3():
-    print("Casos de prueba")
-    print("Resultados:")
-    print(" ")
-    print("1: Fecha1 < Fecha2")
-    print("Prueba: dias_entre((2019,5,11),(2019,5,17))")
-    print("Resultado = " , dias_entre((2019,5,11),(2019,5,17)))
-    print(" ")
-    print("2: Fecha1 > Fecha2")
-    print("Fecha válida: dias_entre((2019,5,17),(2019,5,11))")
-    print("Resultado = " , dias_entre((2019,5,17),(2019,5,11)))
-    print(" ")
-    print("3: Fecha1 = Fecha2")
-    print("Fecha inválida: dias_entre((2019,5,11),(2019,5,17))")
-    print("Resultado = " , dias_entre((2019,5,11),(2019,5,17)))
-
 def pruebasR6():
     print("Casos de prueba")
     print("Resultados:")
@@ -439,6 +423,22 @@ def pruebasR6():
     print(" ")
     print("Prueba limite valido: imprimir_3x4(2019)")
     imprimir_3x4(2019)
+
+def pruebasR8():
+    print("Casos de prueba")
+    print("Resultados:")
+    print(" ")
+    print("1: Fecha1 < Fecha2")
+    print("Prueba: dias_entre((2019,5,11),(2019,5,17))")
+    print("Resultado = " , dias_entre((2019,5,11),(2019,5,17)))
+    print(" ")
+    print("2: Fecha1 > Fecha2")
+    print("Fecha válida: dias_entre((2019,5,17),(2019,5,11))")
+    print("Resultado = " , dias_entre((2019,5,17),(2019,5,11)))
+    print(" ")
+    print("3: Fecha1 = Fecha2")
+    print("Fecha inválida: dias_entre((2019,5,11),(2019,5,11))")
+    print("Resultado = " , dias_entre((2019,5,11),(2019,5,11)))
 
 def pruebasR9():
     print("Casos de prueba")
@@ -463,7 +463,7 @@ def pruebasR9():
     print("Resultado = " , dia_semana((2020,2,29)))
 
 
-pruebasR6()
+pruebasR8()
 
 
 
