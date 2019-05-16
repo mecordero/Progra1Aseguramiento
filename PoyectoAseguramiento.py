@@ -411,6 +411,17 @@ def pruebasR2():
     print("Fecha inválida: fecha_es_valida((2019,2,29))")
     print("Resultado = " , fecha_es_valida((2019,2,29)))
 
+def pruebasR3():
+    print("Casos de prueba")
+    print("Resultados:")
+    print(" ")
+    print("Prueba #1: dia_siguiente((2016,2,28))")
+    print("Resultado = ", dia_siguiente((2016,2,28)))
+    print("Prueba #2: dia_siguiente((2019,3,31)")
+    print("Resultado = ", dia_siguiente((2019,3,31)))
+    print("Prueba #3: dia_siguiente((2018,12,31)")
+    print("Resultado = ", dia_siguiente((2018,12,31)))
+
 def pruebasR6():
     print("Casos de prueba")
     print("Resultados:")
@@ -463,7 +474,7 @@ def pruebasR9():
     print("Resultado = " , dia_semana((2020,2,29)))
 
 
-pruebasR8()
+pruebasR3()
 
 
 
