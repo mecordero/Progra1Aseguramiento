@@ -9,6 +9,8 @@ def fecha_es_tupla(fecha):
     Salida: true o false dependiendo si el formato de la fecha es valida
     Proceso: valida que el tipo de los datos ingresados sea correcta
     '''
+    if (isinstance(fecha,tuple)==False):
+        return False
     #Valida que el parametro sea una tupla de 3 digitos
     if len(fecha) != 3 and isinstance(fecha,tuple):
         return False
