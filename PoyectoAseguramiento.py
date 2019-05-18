@@ -1,7 +1,7 @@
-#Elaborado por Aaron Carballo, Melisa Cordero y Leonardo Román
-#Fecha de creación 29/03/2019 a la 1:05 p.m
-#Última fecha de modificación 8:27 p.m del 29/04/2019
-#Versión 2
+# Elaborado por Aaron Carballo, Melisa Cordero y Leonardo Román
+# Fecha de creación 29/03/2019 a la 1:05 p.m
+# Última fecha de modificación 8:27 p.m del 29/04/2019
+# Versión 2
 
 def fecha_es_tupla(fecha):
     '''
@@ -9,13 +9,13 @@ def fecha_es_tupla(fecha):
     Salida: true o false dependiendo si el formato de la fecha es valida
     Proceso: valida que el tipo de los datos ingresados sea correcta
     '''
-    if (isinstance(fecha,tuple)==False):
+    if isinstance(fecha, tuple) == False:
         return False
     #Valida que el parametro sea una tupla de 3 digitos
-    if len(fecha) != 3 and isinstance(fecha,tuple):
+    if len(fecha) != 3:
         return False
     #Valida que los parametros sean enteros
-    if isinstance(fecha[0], int) and isinstance (fecha[1], int) and isinstance(fecha[2], int):
+    if isinstance(fecha[0], int) and isinstance(fecha[1], int) and isinstance(fecha[2], int):
         return True
     return False
 
@@ -29,17 +29,15 @@ def bisiesto(año):
     if not isinstance(año, int):
         return False
     #Revisa los casos donde el año termina en 00
-    if año%100!=0:
-        if (año%100)%4==0:
+    if año%100 != 0:
+        if (año%100)%4 == 0:
             return True
-        else:
-            return False
+        return False
     #Revisa los casos donde el año no termina en 00
-    elif año%100==0:
-        if año%400==0:
+    elif año%100 == 0:
+        if año%400 == 0:
             return True
-        else:
-            return False
+        return False
 
 
 def fecha_es_valida(tupla):
@@ -49,41 +47,35 @@ def fecha_es_valida(tupla):
     Proceso: Verifica si la fecha existe en el calendario
     '''
 
-    if fecha_es_tupla(tupla)==False:
+    if fecha_es_tupla(tupla) == False:
         return False
     
-    año=tupla[0] #Año de la fecha
-    mes=tupla[1] #Mes de la fecha
-    dia=tupla[2] #Dia de la fecha
+    año = tupla[0] #Año de la fecha
+    mes = tupla[1] #Mes de la fecha
+    dia = tupla[2] #Dia de la fecha
 
-    if año>=1582: #Valida que el año ingresado sea un número positivo
-        if 1<=mes<=12: #Valida que el mes este entre 1 y 12
-            if mes==2: #Caso especial para validar febrero por si es bisiesto
-                if bisiesto(año)==True:
-                    if dia<=29:
+    if año >= 1582: #Valida que el año ingresado sea un número positivo
+        if 1 <= mes <= 12: #Valida que el mes este entre 1 y 12
+            if mes == 2: #Caso especial para validar febrero por si es bisiesto
+                if bisiesto(año) == True:
+                    if dia <= 29:
                         return True
-                    else:
-                        return False
-                else:
-                    if dia<=28:
-                        return True
-                    else:
-                        return False
-            if mes==1 or mes==3 or mes==5 or mes==7 or mes==8 or mes==10 or mes==12: #Para los meses de 31 días
-                if dia<=31 and dia>=1: #Si no se sale del rango entre 1 y 31
-                    return True
-                else:
                     return False
-            if mes==4 or mes==6 or mes==9 or mes==11: #Para los meses de 30 días
-                if dia<=30 and dia>=1: #Si no se sale del rango entre 1 y 30
+                elif dia <= 28:
                     return True
-                else:
-                    return False
-        else:
+                return False
+            if mes in (1, 3, 5, 7, 8, 10, 12):#Para los meses de 31 días
+                if dia <= 31 and dia >= 1: #Si no se sale del rango entre 1 y 31
+                    return True
+                return False
+            if mes in (4, 6, 9, 11): #Para los meses de 30 días
+                if dia <= 30 and dia >= 1: #Si no se sale del rango entre 1 y 30
+                    return True
+                return False
             return False
-    else:
-        print("Ingresar año mayor o igual al 1582") 
         return False
+    print("Ingresar año mayor o igual al 1582")
+    return False
 
 
 def dia_siguiente(fecha):
@@ -93,30 +85,27 @@ def dia_siguiente(fecha):
     Proceso: Devuelve la fecha siguiente a la ingresada 
     '''
     #Para los meses de 31 días
-    if fecha [1] == 1 or fecha [1] == 3 or fecha [1] == 5 or fecha[1] == 7 or fecha[1] == 8 or fecha[1] == 10:
+    if fecha[1] == 1 or fecha[1] == 3 or fecha[1] == 5 or fecha[1] == 7 or fecha[1] == 8 or fecha[1] == 10:
         if fecha[2] < 31:
-            return (fecha[0], fecha [1], fecha[2] + 1)
-        else:
-            return (fecha[0], fecha[1] + 1, 1)
+            return (fecha[0], fecha[1], fecha[2] + 1)
+        return (fecha[0], fecha[1] + 1, 1)
     #Para febrero
-    if fecha [1] == 2:
+    if fecha[1] == 2:
         if fecha[2] < 28:
-            return (fecha[0], 2, fecha [2] + 1)
-        else:
-            if fecha[2] == 28 and bisiesto(fecha[0]):
-                return (fecha[0], 2, 29)
-            return (fecha[0], 3, 1)
+            return (fecha[0], 2, fecha[2] + 1)
+        elif fecha[2] == 28 and bisiesto(fecha[0]):
+            return (fecha[0], 2, 29)
+        return (fecha[0], 3, 1)
     #Para los meses con 30 días
-    if fecha[1] == 4 or fecha[1] == 6 or fecha [1] == 9 or fecha[1] ==11:
+    if fecha[1] == 4 or fecha[1] == 6 or fecha[1] == 9 or fecha[1] == 11:
         if fecha[2] < 30:
-            return (fecha[0], fecha [1], fecha[2] + 1)
+            return (fecha[0], fecha[1], fecha[2] + 1)
         return (fecha[0], fecha[1] + 1, 1)
     #Para diciembre por el caso del 31 de diciembre
     if fecha[1] == 12:
         if fecha[2] < 31:
-            return (fecha[0], fecha [1], fecha[2] + 1)
-        else:
-            return (fecha[0] + 1, 1, 1)
+            return (fecha[0], fecha[1], fecha[2] + 1)
+        return (fecha[0] + 1, 1, 1)
 
 
 def dias_desde_primero_enero(fecha):
@@ -128,12 +117,12 @@ def dias_desde_primero_enero(fecha):
     #Verifia si la fecha es válida
     if fecha_es_valida(fecha):
         #Ciclo en el cual suma los días entre el primero de enero y la fecha dada
-        if fecha[1]==1:
+        if fecha[1] == 1:
             return fecha[2]-1
         else:
             diferencia_de_días = -1
             for i in range(1, fecha[1]):
-                diferencia_de_días += dias_de_mes((fecha[0],i,fecha[2]))
+                diferencia_de_días += dias_de_mes((fecha[0], i, fecha[2]))
             return diferencia_de_días + fecha[2]                     
     else:
         print("Digite una fecha válida" + str(fecha))
@@ -161,61 +150,60 @@ def imprimir_3x4(año):
     Salida: None
     Proceso: devuelve el calendario del año ingresado con los meses y si el nombre del dia por fecha
     '''
-    if not isinstance(año, int) or año<1582:
+    if not isinstance(año, int) or año < 1582:
         print("Fecha invalida")
         return
-    else:
-        print("Calendario del año " + str(año) + " D.C.")
+    print("Calendario del año " + str(año) + " D.C.")
 
 
-        #Encabezados que imprimir de los grupos de meses
-        encabezados =  ["         Enero        |        Febrero       |         Marzo        |         Abril      "]
-        encabezados += ["         Mayo         |         Junio        |         Julio        |        Agosto      "]    
-        encabezados += ["       Setiembre      |        Octubre       |       Noviembre      |       Diciembre    "]  
-        
-        extra_meses = -4 #variable para saber por cual mes va
-        dia_primero_e = dia_primero_enero(año) #día de la semana del primero de enero del año ingresado
+    #Encabezados que imprimir de los grupos de meses
+    encabezados = ["         Enero        |        Febrero       |         Marzo        |         Abril      "]
+    encabezados += ["         Mayo         |         Junio        |         Julio        |        Agosto      "]    
+    encabezados += ["       Setiembre      |        Octubre       |       Noviembre      |       Diciembre    "]  
+    
+    extra_meses = -4 #variable para saber por cual mes va
+    dia_primero_e = dia_primero_enero(año) #día de la semana del primero de enero del año ingresado
 
-        #FOR de todos los meses
-        for encabezado in encabezados:
-            print(encabezado)
-            print(" D  L  K  M  J  V  S  | D  L  K  M  J  V  S  | D  L  K  M  J  V  S  | D  L  K  M  J  V  S")  
-            dias_meses = [1, 1, 1, 1] #variable que lleva el contador del día de cada mes
-            extra_meses += 4
-            #While no han terminado los 4 meses de imprimirse
-            while dias_meses != [0,0,0,0]:
-                for i in range(0, 4): #Para cada mes           
+    #FOR de todos los meses
+    for encabezado in encabezados:
+        print(encabezado)
+        print(" D  L  K  M  J  V  S  | D  L  K  M  J  V  S  | D  L  K  M  J  V  S  | D  L  K  M  J  V  S")  
+        dias_meses = [1, 1, 1, 1] #variable que lleva el contador del día de cada mes
+        extra_meses += 4
+        #While no han terminado los 4 meses de imprimirse
+        while dias_meses != [0, 0, 0, 0]:
+            for i in range(0, 4): #Para cada mes           
+                if dias_meses[i] == 0:
+                    dia_primero = 0
+                else:
+                    dia_primero = dias_desde_primero_enero((año, extra_meses + i + 1, dias_meses[i])) #31
+                    dia_primero = (dia_primero + dia_primero_e) % 7 #3
+                #imprime espacios sin numero
+                for j in range(0, dia_primero):
+                    print("   ", end="")
+                    continue
+            
+                #imprime los numeros de los días
+                for k in range(dia_primero, 7):
                     if dias_meses[i] == 0:
-                        dia_primero = 0
-                    else:
-                        dia_primero = dias_desde_primero_enero((año, extra_meses + i + 1, dias_meses[i])) #31
-                        dia_primero = (dia_primero + dia_primero_e) % 7 #3
-                    #imprime espacios sin numero
-                    for j in range(0, dia_primero):
-                        print("   ", end = "")
+                        print("   ", end="")
                         continue
-                
-                    #imprime los numeros de los días
-                    for k in range(dia_primero, 7):
-                        if dias_meses[i] == 0:
-                            print ("   ", end = "")
-                            continue
-                        elif dias_meses[i] < 10:
-                            print (" ", end = "")
-                        print(str(dias_meses[i]) + " ", end = "")                
+                    elif dias_meses[i] < 10:
+                        print(" ", end="")
+                    print(str(dias_meses[i]) + " ", end="")                
 
-                        #verifica si llegó al máximo
+                    #verifica si llegó al máximo
 
-                        if dias_de_mes((año, extra_meses + i + 1, 1)) == dias_meses[i]:
-                            dias_meses[i] = 0
-                        else:
-                            dias_meses[i] += 1
-
-                    if i != 3:
-                        print (" |", end = "")
+                    if dias_de_mes((año, extra_meses + i + 1, 1)) == dias_meses[i]:
+                        dias_meses[i] = 0
                     else:
-                        print()
+                        dias_meses[i] += 1
 
+                if i != 3:
+                    print(" |", end="")
+                else:
+                    print()
+                    
 def fecha_futura(fecha, numDias):
     '''
     Entrada: fecha en formato de tupla, numero de días como entero positivo
@@ -277,8 +265,8 @@ def dias_entre(fecha1, fecha2):
         mesActual = anterior[1] + 1
         #loop hasta que sean el mismo mes
         while mesActual != posterior[1]:
-            resultado += dias_de_mes((anterior[0], mesActual,1))
-            mesActual +=1
+            resultado += dias_de_mes((anterior[0], mesActual, 1))
+            mesActual += 1
         #suma los días que faltan
         return resultado + posterior[2]
     #no son del mismo año
@@ -288,15 +276,15 @@ def dias_entre(fecha1, fecha2):
     #loop hasta que sean el mismo año
     while añoActual != posterior[0]:
         #suma todos los dias del año mes a mes
-        while mesActual <=12:
-            resultado += dias_de_mes((añoActual, mesActual,1))
-            mesActual +=1
+        while mesActual <= 12:
+            resultado += dias_de_mes((añoActual, mesActual, 1))
+            mesActual += 1
         mesActual = 1
-        añoActual +=1
+        añoActual += 1
     #loop hasta que sean el mismo mes
     while mesActual != posterior[1]:
-        resultado += dias_de_mes((anterior[0], mesActual,1))
-        mesActual +=1
+        resultado += dias_de_mes((anterior[0], mesActual, 1))
+        mesActual += 1
     #suma los días que faltan
     return resultado + posterior[2]
 
@@ -311,9 +299,9 @@ def dia_semana(fecha):
 
     mes = fecha[1] #Mes en la tupla
     año = fecha[0] #Año en la tupla
-    if fecha[1]<3:
+    if fecha[1] < 3:
         año -= 1 #Se debe decrementar en 1 el año al utilizar el mes de enero o febrero
-    if mes==1:
+    if mes == 1:
         mes = 11
     elif mes == 2:
         mes = 12
@@ -327,15 +315,13 @@ def dia_semana(fecha):
     dia_de_semana = (dia + int(2.6*mes - 0.2) - 2*cent + year + year//4 + cent//4)%7
     return dia_de_semana   
 
-def dia_inicio_mes(año,mes):
+def dia_inicio_mes(año, mes):
     '''
     Entrada: fecha en forma de tupla (int, int, int)
     Salida: Devuelve el número que representa el dia de la semana.
     Proceso: Devuelve el día de la semana de la fecha (0=Domingo, 1=Lunes, 2=Martes, 3=Miércoles, 4=Jueves, 5=Viernes, 6=Sábado)
     '''
-    return dia_semana((año,mes,1)) #Llama a la funcion dia de la semana con dia 1 para encontrar el dia de inicio del mes
-
-    
+    return dia_semana((año, mes, 1)) #Llama a la funcion dia de la semana con dia 1 para encontrar el dia de inicio del mes  
 ##Funciones extra
 
 def dias_de_mes(fecha):
@@ -346,20 +332,20 @@ def dias_de_mes(fecha):
     '''
     #Devuelve la cantidad de días de un mes en un año bisiesto
     if bisiesto(fecha[0]):
-            if fecha[1] == 2:
-                return 29
-            elif fecha[1] == 4 or fecha[1] == 6 or fecha[1] == 9 or fecha[1] == 11:
-                return 30
-            else:
-                return 31
+        if fecha[1] == 2:
+            return 29
+        elif fecha[1] == 4 or fecha[1] == 6 or fecha[1] == 9 or fecha[1] == 11:
+            return 30
+        else:
+            return 31
     #Devuelve la cantidad de días de un mes en un año
     else:
-            if fecha[1] == 2:
-                return 28
-            elif fecha[1] == 4 or fecha[1] == 6 or fecha[1] == 9 or fecha[1] == 11:
-                return 30
-            else:
-                return 31
+        if fecha[1] == 2:
+            return 28
+        elif fecha[1] == 4 or fecha[1] == 6 or fecha[1] == 9 or fecha[1] == 11:
+            return 30
+        else:
+            return 31
 
 
 def esAnterior(fechaAnterior, fechaPosterior):
@@ -382,6 +368,8 @@ def esAnterior(fechaAnterior, fechaPosterior):
 
     #son del mismo día
     return False
+
+
 
 def pruebasR2():
     print("Casos de prueba")
